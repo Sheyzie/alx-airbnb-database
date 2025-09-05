@@ -3,7 +3,7 @@
 -- ==============================
 
 -- Write an initial query that retrieves all bookings along with the user details, property details, and payment details and save it on perfomance.sql
-
+EXPLAIN
 SELECT bookings.start_date, bookings.end_date, users.first_name, users.last_name, properties.name, properties.description, payments.amounts, payments.payment_date, payments.payment_method
 FROM bookings
 INNER JOIN users
@@ -27,6 +27,6 @@ JOIN properties AS p
   ON b.property_id = p.property_id
 JOIN payments AS pm
   ON b.booking_id = pm.booking_id
-WHERE b.start_date >= CURDATE()
+WHERE b.start_date >= CURDATE() AND b.end_date > CURDATE()
 ORDER BY b.start_date DESC
 LIMIT 50;
