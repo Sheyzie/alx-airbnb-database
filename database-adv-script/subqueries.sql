@@ -7,7 +7,7 @@ SELECT properties.name, properties.description, properties.price_per_night, revi
 FROM properties
 INNER JOIN reviews
 ON properties.property_id = reviews.property_id
-WHERE reviews.ratings > 4
+WHERE AVG(reviews.ratings) > 4
 ORDER BY reviews.ratings;
 
 -- Write a correlated subquery to find users who have made more than 3 bookings.
