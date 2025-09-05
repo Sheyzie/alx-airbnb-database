@@ -1,0 +1,1 @@
+'-> Table scan on user  (cost=0.75 rows=5) (actual time=0.0947..0.19 rows=5 loops=1)\n'
