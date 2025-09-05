@@ -11,7 +11,11 @@ GROUP BY booking.user_id;
 
 -- Use a window function (ROW_NUMBER, RANK) to rank properties based on the total number of bookings they have received.
 
-SELECT properties.name, properties.description, properties.price_per_night, RANK() OVER (
+SELECT properties.name, properties.description, properties.price_per_night, ROW_NUMBER() OVER (
+    PARTITION BY properties.property_id
+    ORDER BY COUNT(bookings.property_id)
+),
+RANK() OVER (
     PARTITION BY properties.property_id
     ORDER BY COUNT(bookings.property_id)
 )
